@@ -15,8 +15,8 @@ Another basic problem with a twist in the second part. Dictionaries come in hand
 ## Day 03
 In principle a simple problem, but I ran into some problems and misunderstood something in the second part. I thought you were meant to also find the groups, i.e. look through all triples of Elves and see which of them have exactly one item in common. But it turned out that the groups were already given by the order of the input lines. This cost me a lot of time.
 
-**Time complexity:** $\mathcal O(n \times \ell^2)$ for both parts.
-In the average case, this could actually be improved to $\mathcal O(n \times \ell)$ by using intersections to find the common items.
+**Time complexity:** $\mathcal O(n \cdot \ell^2)$ for both parts.
+In the average case, this could actually be improved to $\mathcal O(n \cdot \ell)$ by using intersections to find the common items.
 
 ## Python's complexity
 A good reference for containers: https://wiki.python.org/moin/TimeComplexity
