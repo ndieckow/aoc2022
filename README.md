@@ -18,6 +18,11 @@ In principle a simple problem, but I ran into some problems and misunderstood so
 **Time complexity:** $\mathcal O(n \cdot \ell^2)$ for both parts.
 In the average case, this could actually be improved to $\mathcal O(n \cdot \ell)$ by using intersections to find the common items.
 
+## Day 04
+Very simple problem that has you think about how to determine if sets of integers intersect without actually computing the intersection. Part 2 shouldn't have taken me as long as it did -- while trying to avoid double counting, I accidentally counted too few overlaps! Part 1 went well, I even got rank 250, which is quite good, given that I usually place upwards of 2000.
+
+**Time complexity:** $\mathcal O(n)$ for both parts.
+
 ## Python's complexity
 A good reference for containers: https://wiki.python.org/moin/TimeComplexity
 * `len(x)` for some list (or even set) `x` is in $\mathcal O(1)$
