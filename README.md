@@ -23,6 +23,11 @@ Very simple problem that has you think about how to determine if sets of integer
 
 **Time complexity:** $\mathcal O(n)$ for both parts.
 
+## Day 05
+A stack problem. Although the stack part is quite simple compared to the input reading. It took me an embarrassing 10 minutes to parse the crate stacks correctly. I ended up transposing the first part of the input, in order to have each stack on one line. Then, a rogue `strip()` in the first line messed up the test input, causing me to be very confused and wasting even more time. Well, fun problem, though.
+
+**Time complexity:** Let $s$ be the number of stacks, $h$ the height of the tallest stack in the beginning and $m$ the maximum amount of crates that are moved at once in any move. By the convention above, $n$ is the number of moves. Then, the time complexity for both parts is $\mathcal O(s \cdot h + n \cdot m)$. Fixing the number of stacks, assuming a somewhat even distribution of crates as well as number of crates moved at once, we can say that the algorithm is linear in the number of moves.
+
 ## Python's complexity
 A good reference for containers: https://wiki.python.org/moin/TimeComplexity
 * `len(x)` for some list (or even set) `x` is in $\mathcal O(1)$
