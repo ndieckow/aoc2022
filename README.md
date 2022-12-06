@@ -28,6 +28,11 @@ A stack problem - although the stack part was quite simple compared to the input
 
 **Time complexity:** Let $s$ be the number of stacks, $h$ the height of the tallest stack in the beginning and $m$ the maximum amount of crates that are moved at once in any move. By the convention above, $n$ is the number of moves. Then, the time complexity for both parts is $\mathcal O(s \cdot h + n \cdot m)$. The $s\cdot h$ part comes from transposing the input. Fixing the number of stacks, assuming a somewhat even distribution of crates as well as number of crates moved at once, we can say that the algorithm is linear in the number of moves.
 
+## Day 06
+I was slightly disappointed by today's part 2. In terms of implementation, it was the exact same as part 1, except that you had to exchange a number. I barely made the leaderboard on part 1 and unfortunately didn't make it on part 2.
+
+**Time complexity:** This time, there is no number of lines, so let $n$ be the length of the signal. Then the time complexity for both parts is $\mathcal O(n)$. If we let the scope (i.e. the value that was 4 respectively 14 in today's puzzle) be a variable as well, call it $s$, the complexity is $\mathcal O((n-s) \cdot s)$, implying that it should be slowest when $s \approx \frac{n}{2}$.
+
 ## Python's complexity
 A good reference for containers: https://wiki.python.org/moin/TimeComplexity
 * `len(x)` for some list (or even set) `x` is in $\mathcal O(1)$
