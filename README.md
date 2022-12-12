@@ -38,6 +38,12 @@ I didn't catch that the addx instruction takes two ticks instead of one. This co
 
 **Time complexity:** Nothing special, $\mathcal O(n)$.
 
+## Day 12
+I read the problem statement, and thought to my self, "Ah, Dijkstra!". Well, I was wrong. While Dijkstra worked perfectly for part 1, it failed me on part 2. Python does not have a priority queue available, so the implementation was not as efficient as it could have been. I searched for all-source algorithms and implemented Floyd-Warshall, which was again stupid, because it runs in cubic time.
+What is the correct algorithm then? Breadth-first search. It only needs linear (or quadratic in a strongly connected graph) time. The reason it works is simply that the edges don't have weights. Using Dijkstra or Floyd-Warshall to find all-source shortest paths in an *unweighted* graph is like using a sledgehammer to crack a nut!
+
+**Time complexity:** $\mathcal O((RC)^2)$, where $R$ and $C$ are the number of rows and columns, respectively.
+
 ## Python's complexity
 A good reference for containers: https://wiki.python.org/moin/TimeComplexity
 * `len(x)` for some list (or even set) `x` is in $\mathcal O(1)$
