@@ -48,12 +48,12 @@ def compare(a,b):
     elif type(b) == list:
         return compare([a],b)
     else:
-        return sign(b - a)
+        return sign(a - b)
 
     if a == []:
-        return 1
-    elif b == []:
         return -1
+    elif b == []:
+        return 1
 
     i = 0
     while True:
@@ -62,9 +62,9 @@ def compare(a,b):
             return cmp
         i += 1
         if i >= len(a):
-            return 1
-        elif i >= len(b):
             return -1
+        elif i >= len(b):
+            return 1
 
 part1 = 0
 lst = [[[2]],[[6]]]
@@ -73,13 +73,15 @@ for i,pair in enumerate(inp):
     arr = parse(a,True)
     brr = parse(b,True)
     lst += [arr,brr]
-    if compare(arr,brr) == 1:
+    if compare(arr,brr) == -1:
         part1 += (i+1)
 print('Part 1:', part1)
 
+# Had a wrong implementation of part 2 first (the compare function was flipped, producing a descending order,
+# and I considered the first packet as having index 0), but it still produced the right answer o.O
 lst = sorted(lst, key=functools.cmp_to_key(compare))
 part2 = 1
 for i,packet in enumerate(lst):
     if packet == [[2]] or packet == [[6]]:
-        part2 *= i
+        part2 *= (i+1)
 print('Part 2:', part2)
