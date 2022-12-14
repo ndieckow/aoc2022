@@ -78,7 +78,7 @@ for i,pair in enumerate(inp):
 print('Part 1:', part1)
 
 # Had a wrong implementation of part 2 first (the compare function was flipped, producing a descending order,
-# and I considered the first packet as having index 0), but it still produced the right answer o.O
+# and I considered the first packet as having index 0), but it still produced the right answer
 lst = sorted(lst, key=functools.cmp_to_key(compare))
 part2 = 1
 for i,packet in enumerate(lst):

@@ -44,6 +44,11 @@ What is the correct algorithm then? Breadth-first search. It only needs linear (
 
 **Time complexity:** $\mathcal O((RC)^2)$, where $R$ and $C$ are the number of rows and columns, respectively.
 
+## Day 13
+Quite a wild ride. Gave up on this puzzle after an hour or so, because it would run fine on the test input but the answer for the actual input was still wrong. Turned out that simply writing `a = [a]` in the compare function was not such a good idea, because this actually changes the list in the puzzle input as well, i.e. later computations will be wrong.
+
+Also, surprisingly, my part 2 answer was correct, even though the code contained two mistakes. The algorithm was wrong but it happened to work on my input (not the test input, though).
+
 ## Python's complexity
 A good reference for containers: https://wiki.python.org/moin/TimeComplexity
 * `len(x)` for some list (or even set) `x` is in $\mathcal O(1)$
