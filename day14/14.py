@@ -7,7 +7,6 @@ inp = open('14.in').read().split('\n')
 # 2 = sand
 rocks = defaultdict(int)
 
-# down, down-eft, downäright
 sand = (0,500)
 
 for line in inp:
@@ -71,5 +70,4 @@ for part in [1,2]:
             if part == 1 and corn[0] > R:
                 print('Part 1:', units-1)
                 break
-
-draw()
+#draw()
