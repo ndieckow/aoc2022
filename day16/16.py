@@ -3,7 +3,7 @@ import sys
 
 sys.setrecursionlimit(1000000)
 
-input = open('16.in').read().split('\n')
+input = open('16.test').read().split('\n')
 
 start = 'AA'
 
@@ -20,28 +20,28 @@ for i,line in enumerate(input):
     idx[valve] = i
 
 mem = {}
-
 def solve(valve,time,opened):
-    print(time)
-    tup = tuple(opened)
-    if (valve,time,tup) in mem:
-        return mem[(valve,time,tup)]
+    #print(mem)
+    if (valve,time,opened) in mem:
+        return mem[(valve,time,opened)]
     if time == 0:
         return 0
     poss = []
     
+    #ivalve = idx[valve]
     # open valve
-    if not opened[idx[valve]]:
-        new_opened = opened.copy()
-        new_opened[idx[valve]] = 1
-        poss.append(solve(valve,time-1,new_opened))
+    if not valve in opened and weights[valve] > 0:
+        poss.append(solve(valve,time-1,opened.union({valve})))
     # walk to another valve
     for nb in adj[valve]:
         poss.append(solve(nb,time-1,opened))
     
-    ans = sum(weights[x] for x in weights if opened[idx[x]]) + max(poss)
-    mem[(valve,time,tup)] = ans
+    ans = sum(weights[x] for x in weights if x in opened) + max(poss)
+    mem[(valve,time,opened)] = ans
     return ans
 
+print(solve(start,30,frozenset()))
 
-print(solve(start,30,[0]*len(weights)))
+# Go through all possible bipartitions
+# For each bipartition (A,B), let protag do A and elephant do B
+# use Floyd-Warshall to compute distances
