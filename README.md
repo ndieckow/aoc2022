@@ -49,6 +49,13 @@ Quite a wild ride. Gave up on this puzzle after an hour or so, because it would 
 
 Also, surprisingly, my part 2 answer was correct, even though the code contained two mistakes. The algorithm was wrong but it happened to work on my input (not the test input, though).
 
+## Day 24
+Nice problem. I've never solved a graph traversal problem with a changing graph. My first instinct was to use DP, which worked for the test input, but was too slow for the actual input. BFS works much better: the key observation is that the player's behaviour has no impact on the structure of the graph, only time. Hence, one can just "expand" the graph to a time dimension, i.e. the nodes are of the form $(r,c,t)$ and there is an edge $(r,c,t) \to (r',c',t')$ if, and only if, $t' = t+1$ and $(r',c')$ is a passable neighbor of $(r,c)$ at time $t+1$.
+
+The other observation is that the evolution of the blizzards is periodic with period less than or equal to the grid size (ignoring walls)*, so that the graph described above is in fact finite. It has $((R-2)\cdot(C-2))^2 = \mathcal O((RC)^2)$ vertices with each one having at most $5$ outgoing edges (4 directions + wait). Hence, the overall time complexity is $\mathcal O(|V| + |E|) = \mathcal O((RC)^2)$.
+
+\*The period is in fact $lcm(R-2,C-2)$.
+
 ## Python's complexity
 A good reference for containers: https://wiki.python.org/moin/TimeComplexity
 * `len(x)` for some list (or even set) `x` is in $\mathcal O(1)$
