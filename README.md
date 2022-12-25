@@ -52,9 +52,20 @@ Also, surprisingly, my part 2 answer was correct, even though the code contained
 ## Day 24
 Nice problem. I've never solved a graph traversal problem with a changing graph. My first instinct was to use DP, which worked for the test input, but was too slow for the actual input. BFS works much better: the key observation is that the player's behaviour has no impact on the structure of the graph, only time. Hence, one can just "expand" the graph to a time dimension, i.e. the nodes are of the form $(r,c,t)$ and there is an edge $(r,c,t) \to (r',c',t')$ if, and only if, $t' = t+1$ and $(r',c')$ is a passable neighbor of $(r,c)$ at time $t+1$.
 
-The other observation is that the evolution of the blizzards is periodic with period less than or equal to the grid size (ignoring walls)*, so that the graph described above is in fact finite. It has $((R-2)\cdot(C-2))^2 = \mathcal O((RC)^2)$ vertices with each one having at most $5$ outgoing edges (4 directions + wait). Hence, the overall time complexity is $\mathcal O(|V| + |E|) = \mathcal O((RC)^2)$.
+The other observation is that the evolution of the blizzards is periodic with period less than or equal to the grid size (ignoring walls)*, so that the graph described above is finite. It has $((R-2)\cdot(C-2))^2 = \mathcal O((RC)^2)$ vertices with each one having at most $5$ outgoing edges (4 directions + wait). Hence, the overall time complexity is $\mathcal O(|V| + |E|) = \mathcal O((RC)^2)$.
 
 \*The period is in fact $lcm(R-2,C-2)$.
+
+## Learned lessons
+* BFS is far more applicable than I thought
+* algorithm choice heuristics for shortest path problems
+    * if the edges are unweighted and you have only ONE start or ONE goal, use BFS ($n^2$); same scenario with (non-negative) weighted edges: Dijkstra ($n^2$); otherwise: Floyd-Warshall ($n^3$)
+    * whenever you care about the FASTEST or FIRST way of reaching some goal, BFS is better than DFS, as you won't have to traverse all nodes
+    * if the behavior of the player alters the environment, use DP
+* DP is just a (variant of) DFS over the state graph
+    * BFS would also work in theory, but the recursive nature of DFS is much nicer to comprehend and implement
+* write helper functions for grids, as well as a ``memoize`` function (see ``utils.py``)
+* implement a priority queue or Fibonacci heap for Dijkstra's algorithm
 
 ## Python's complexity
 A good reference for containers: https://wiki.python.org/moin/TimeComplexity
