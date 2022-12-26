@@ -33,6 +33,10 @@ I was slightly disappointed by today's part 2. In terms of implementation, it wa
 
 **Time complexity:** This time, there is no number of lines, so let $n$ be the length of the signal. Then the time complexity for both parts is $\mathcal O(n)$. If we let the scope (i.e. the value that was 4 respectively 14 in today's puzzle) be a variable as well, call it $s$, the complexity is $\mathcal O((n-s) \cdot s)$, implying that it should be slowest when $s \approx \frac{n}{2}$.
 
+## Day 07
+<!-- **Time complexity:** Parsing of the input is linear. `total_size` uses DP, annoying to analyize. It is only computed once for each directory, so each file is only counted once. One could say it's linear in the number of files. What about the file tree structure? -->
+To do
+
 ## Day 10
 I didn't catch that the addx instruction takes two ticks instead of one. This cost me a bit of time. Overall though, my placement was quite good.
 
@@ -49,6 +53,11 @@ Quite a wild ride. Gave up on this puzzle after an hour or so, because it would 
 
 Also, surprisingly, my part 2 answer was correct, even though the code contained two mistakes. The algorithm was wrong but it happened to work on my input (not the test input, though).
 
+## Day 18
+I got stuck on part 2 and revisited it a few days later. The idea is to use BFS to identify all inside regions (imagine flooding them with water). The unbounded region can be identified by BFS eventually traversing nodes (voxels) outside of the bounding box of the lava blob.
+
+**Time complexity:** Linear in the size of the bounding box of the lava blob, so $\mathcal O(WH)$.
+
 ## Day 24
 Nice problem. I've never solved a graph traversal problem with a changing graph. My first instinct was to use DP, which worked for the test input, but was too slow for the actual input. BFS works much better: the key observation is that the player's behaviour has no impact on the structure of the graph, only time. Hence, one can just "expand" the graph to a time dimension, i.e. the nodes are of the form $(r,c,t)$ and there is an edge $(r,c,t) \to (r',c',t')$ if, and only if, $t' = t+1$ and $(r',c')$ is a passable neighbor of $(r,c)$ at time $t+1$.
 
@@ -64,7 +73,7 @@ The other observation is that the evolution of the blizzards is periodic with pe
     * if the behavior of the player alters the environment, use DP
 * DP is just a (variant of) DFS over the state graph
     * BFS would also work in theory, but the recursive nature of DFS is much nicer to comprehend and implement
-* write helper functions for grids, as well as a ``memoize`` function (see ``utils.py``)
+* write helper functions for grids, as well as a `memoize` function (see `utils.py`)
 * implement a priority queue or Fibonacci heap for Dijkstra's algorithm
 
 ## Python's complexity

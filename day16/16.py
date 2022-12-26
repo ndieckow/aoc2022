@@ -1,9 +1,6 @@
 from collections import defaultdict
-import sys
 
-sys.setrecursionlimit(1000000)
-
-input = open('16.test').read().split('\n')
+input = open('16.in').read().split('\n')
 
 start = 'AA'
 
@@ -20,28 +17,24 @@ for i,line in enumerate(input):
     idx[valve] = i
 
 mem = {}
-def solve(valve,time,opened):
-    #print(mem)
-    if (valve,time,opened) in mem:
-        return mem[(valve,time,opened)]
+def solve(valve,time,opened,part):
+    state = (valve,time,opened,part)
+    if state in mem:
+        return mem[state]
     if time == 0:
-        return 0
+        return 0 if part == 1 else solve(start, 26, opened, 1)
     poss = []
     
-    #ivalve = idx[valve]
     # open valve
-    if not valve in opened and weights[valve] > 0:
-        poss.append(solve(valve,time-1,opened.union({valve})))
+    if valve not in opened and weights[valve] > 0:
+        poss.append((time-1)*weights[valve] + solve(valve, time-1, opened.union({valve}), part))
     # walk to another valve
     for nb in adj[valve]:
-        poss.append(solve(nb,time-1,opened))
+        poss.append(solve(nb, time-1, opened, part))
     
-    ans = sum(weights[x] for x in weights if x in opened) + max(poss)
-    mem[(valve,time,opened)] = ans
+    ans = max(poss)
+    mem[state] = ans
     return ans
 
-print(solve(start,30,frozenset()))
-
-# Go through all possible bipartitions
-# For each bipartition (A,B), let protag do A and elephant do B
-# use Floyd-Warshall to compute distances
+print('Part 1:', solve(start,30,frozenset(), 1))
+print('Part 2:', solve(start,26,frozenset(), 2))

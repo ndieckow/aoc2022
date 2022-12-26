@@ -24,3 +24,26 @@ def print_grid(grid):
             line += grid[(r,c)]
         print(line)
     print('\n')
+
+# returns a list of all isolated integers appearing in a string
+# Which of the two is faster (if you make their behaviours the same)?
+def ints(line):
+    ans = []
+    words = line.split(' ')
+    for w in words:
+        try:
+            ans.append(int(w))
+        except Exception:
+            continue
+    return ans
+
+def ints2(line):
+    ans = []
+    cur = []
+    for c in line:
+        if ord('0') <= ord(c) <= ord('9'):
+            cur.append(c)
+        elif cur:
+            ans.append(int(''.join(cur)))
+            cur = []
+    return ans
